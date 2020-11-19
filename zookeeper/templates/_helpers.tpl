@@ -32,25 +32,15 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Common labels
+The name of the zookeeper headless service.
 */}}
-{{- define "zookeeper.labels" -}}
-app.kubernetes.io/name: {{ include "zookeeper.name" . }}
-helm.sh/chart: {{ include "zookeeper.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- define "zookeeper.headless" -}}
+{{- printf "%s-headless" (include "zookeeper.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
-Create the name of the service account to use
+The name of the zookeeper chroots job.
 */}}
-{{- define "zookeeper.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "zookeeper.fullname" .) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
+{{- define "zookeeper.chroots" -}}
+{{- printf "%s-chroots" (include "zookeeper.fullname" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

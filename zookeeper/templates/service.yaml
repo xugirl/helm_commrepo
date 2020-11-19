@@ -1,16 +1,41 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "zookeeper.fullname" . }}
+  name: {{ template "zookeeper.fullname" . }}
   labels:
-{{ include "zookeeper.labels" . | indent 4 }}
+    app: {{ template "zookeeper.name" . }}
+    chart: {{ template "zookeeper.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- if .Values.service.annotations }}
+  annotations:
+{{- with .Values.service.annotations }}
+{{ toYaml . | indent 4 }}
+{{- end }}
+{{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  {{- range $key, $value := .Values.service.ports }}
+    - name: {{ $key }}
+{{ toYaml $value | indent 6 }}
+  {{- end }}
+{{- if .Values.exporters.jmx.enabled }}
+  {{- range $key, $port := .Values.exporters.jmx.ports }}
+    - name: {{ $key }}
+      port: {{ $port.containerPort }}
+      targetPort: {{ $key }}
+      protocol: {{ $port.protocol }}
+  {{- end }}
+{{- end}}
+{{- if .Values.exporters.zookeeper.enabled }}
+  {{- range $key, $port := .Values.exporters.zookeeper.ports }}
+    - name: {{ $key }}
+      port: {{ $port.containerPort }}
+      targetPort: {{ $key }}
+      protocol: {{ $port.protocol }}
+  {{- end }}
+{{- end}}
   selector:
-    app.kubernetes.io/name: {{ include "zookeeper.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: {{ template "zookeeper.name" . }}
+    release: {{ .Release.Name }}
