@@ -3,10 +3,10 @@ entries:
   zookeeper:
   - apiVersion: v1
     appVersion: 3.5.5
-    created: "2020-11-19T17:04:33.359366+08:00"
+    created: "2020-11-19T17:28:36.4046044+08:00"
     description: Centralized service for maintaining configuration information, naming,
       providing distributed synchronization, and providing group services.
-    digest: 18a91b8ebb50fb66324a9bccbd5f68370e1bfaa10751d1128d6c433ff2330559
+    digest: 071728e97d932102676e234527ee2bcbdef9b530ef62b3f4b13a1a74c1a556d5
     home: https://zookeeper.apache.org/
     icon: https://zookeeper.apache.org/images/zookeeper_small.gif
     kubeVersion: ^1.10.0-0
@@ -22,4 +22,4 @@ entries:
     urls:
     - zookeeper-2.1.5.tgz
     version: 2.1.5
-generated: "2020-11-19T17:04:33.3561714+08:00"
+generated: "2020-11-19T17:28:36.4035752+08:00"
