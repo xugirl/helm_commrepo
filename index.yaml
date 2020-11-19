@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  zookeeper:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-11-19T16:20:47.5086557+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 7f660f11928709463fa231a73c70c87c13481076a036911bd702a1f0c47c82fa
+    name: zookeeper
+    urls:
+    - zookeeper-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-19T16:20:47.5080532+08:00"
