@@ -1,4 +1,3 @@
-### zookeeper helm repo
 # ⚠️ Repo Archive Notice
 
 As of Nov 13, 2020, charts in this repo will no longer be updated.
@@ -39,7 +38,7 @@ If you do not specify a name, helm will select a name for you.
 ### Installed Components
 You can use `kubectl get` to view all of the installed components.
 
-```console{%raw}
+```console{%raw%}
 $ kubectl get all -l app=zookeeper
 NAME:   zookeeper
 LAST DEPLOYED: Wed Apr 11 17:09:48 2018
